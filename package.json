@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server/index.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "next": "11.0.1",
     "node-sass": "^4.13.1",
     "path": "^0.12.7",
