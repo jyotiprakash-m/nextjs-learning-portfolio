@@ -1,30 +1,41 @@
-import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
+import Link from 'next/link'
+
+const AppLink = ({ children, className, href }) =>
+    <Link href={href}>
+        <a className={className}>{children}</a>
+    </Link>
+
 
 const appNavbar = () => {
     return (
         <div className="navbar-wrapper">
             <Navbar expand="lg" className="navbar-dark fj-mw9">
-                <Navbar.Brand className="mr-3 font-weight-bold" href="#">Jyotiprakash</Navbar.Brand>
+                <AppLink
+                    href="/"
+                    className="navbar-brand mr-3 font-weight-bold">
+                    Jyotiprakash
+                </AppLink>
                 <Navbar.Toggle />
                 <Navbar.Collapse>
                     <Nav className="mr-auto">
-                        <Nav.Link href="#" className="mr-3">
+                        <AppLink href="/portfolios" className="mr-3 nav-link">
                             Portfolios
-                        </Nav.Link>
-                        <Nav.Link href="#" className="mr-3">
+                        </AppLink>
+                        <AppLink href="/forum/categories" className="mr-3 nav-link">
                             Forum
-                        </Nav.Link>
-                        <Nav.Link href="#" className="mr-3">
+                        </AppLink>
+                        <AppLink href="/cv" className="mr-3 nav-link">
                             Cv
-                        </Nav.Link>
+                        </AppLink>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#" className="mr-3">
-                            Sign Up
-                        </Nav.Link>
-                        <Nav.Link href="#" className="mr-3 btn btn-success bg-green-2 bright">
+                        <AppLink href="/login" className="mr-3 nav-link">
                             Sign In
-                        </Nav.Link>
+                        </AppLink>
+                        <AppLink href="/register" className="mr-3 btn btn-success bg-green-2 bright">
+                            Sign Up
+                        </AppLink>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
