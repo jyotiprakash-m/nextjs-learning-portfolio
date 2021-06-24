@@ -1,10 +1,8 @@
-import Navbar from '@/components/shared/Navbar';
 
 const Login = () => {
 
     return (
         <>
-            <Navbar />
             <div className="container">
                 <section className="section-title">
                     <div className="px-2">
