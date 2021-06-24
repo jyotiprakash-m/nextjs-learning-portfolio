@@ -1,6 +1,5 @@
 import React from 'react';
-import Navbar from "../../../components/shared/Navbar"
-import Hero from "../../../components/shared/Hero"
+import Navbar from "@/components/shared/Navbar"
 
 
 const ForumCategories = () => {
@@ -8,7 +7,6 @@ const ForumCategories = () => {
     return (
         <>
             <Navbar />
-            <Hero />
 
             <div className="container">
                 <section className="section-title">
