@@ -29,7 +29,7 @@ const PortfolioDetail = ({ portfolio }) => {
                     <h1 className="display-3">{portfolio.title}</h1>
                     <p className="lead">{portfolio.jobTitle}</p>
                     <p>
-                        <a className="btn btn-lg btn-success" href={portfolio.companyWebsite} role="button">
+                        <a className="btn btn-lg btn-success" href={portfolio.companyWebsite} target="_blank" role="button">
                             See Company</a>
                     </p>
                 </div>

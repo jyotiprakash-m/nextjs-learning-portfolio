@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import PortfolioCard from '@/components/portfolios/PortfolioCard';
-
+import Link from 'next/link';
 const apiCall = () => {
     return new Promise((res, rej) => {
         setTimeout(() => {
@@ -51,7 +51,13 @@ const Portfolios = ({ portfolios }) => {
                         {portfolios.map(portfolio =>
 
                             <div key={portfolio._id} className="col-md-4">
-                                <PortfolioCard portfolio={portfolio} />
+                                <Link
+                                    href='/portfolios/[id]'
+                                    as={`/portfolios/${portfolio._id}`}>
+                                    <a className="card-link">
+                                        <PortfolioCard portfolio={portfolio} />
+                                    </a>
+                                </Link>
                             </div>
                         )}
 
