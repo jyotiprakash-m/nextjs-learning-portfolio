@@ -1,10 +1,21 @@
 import React from 'react';
 
-const Portfolios = () => {
+const apiCall = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res({
+                testingData: 'Just some testing Data'
+            })
+        }, 200)
+    })
+}
+
+const Portfolios = (props) => {
 
     return (
         <>
             <div className="container">
+                {props.testingData}
                 <section className="section-title">
                     <div className="px-2">
                         <div className="pt-5 pb-4">
@@ -57,6 +68,10 @@ const Portfolios = () => {
     )
 }
 
+Portfolios.getInitialProps = async () => {
 
+    const data = await apiCall();
+    return { ...data }
+}
 
 export default Portfolios;
