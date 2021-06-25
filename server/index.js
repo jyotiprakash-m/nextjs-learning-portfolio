@@ -10,43 +10,10 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const data = {
-    portfolios: [
-        {
-            _id: "sad87da79",
-            title: 'Job in Netcentric',
-            company: 'Netcentric',
-            companyWebsite: 'www.google.com',
-            location: 'Spain, Barcelona',
-            jobTitle: 'Engineer',
-            description: 'Doing something, programing....',
-            startDate: '01/01/2014',
-            endDate: '01/01/2016'
-        },
-        {
-            _id: "da789ad1",
-            title: 'Job in Siemens',
-            company: 'Siemens',
-            companyWebsite: 'www.google.com',
-            location: 'Slovakia, Kosice',
-            jobTitle: 'Software Engineer',
-            description: 'Responsoble for parsing framework for JSON medical data.',
-            startDate: '01/01/2011',
-            endDate: '01/01/2013'
-        },
-        {
-            _id: "sadcxv9",
-            title: 'Work in USA',
-            company: 'WhoKnows',
-            companyWebsite: 'www.google.com',
-            location: 'USA, Montana',
-            jobTitle: 'Housekeeping',
-            description: 'So much responsibility....Overloaaaaaad',
-            startDate: '01/01/2010',
-            endDate: '01/01/2011'
-        }
-    ]
-}
+// resolvers
+const { portfolioResolvers } = require('./graphql/resolvers');
+// types
+const { portfolioTypes } = require('./graphql/types');
 
 
 app.prepare().then(() => {
@@ -56,38 +23,24 @@ app.prepare().then(() => {
     // Construct a schema ,using GraphQl Langauge
 
     const schema = buildSchema(`
-    type Porfolio {
-        _id: ID
-        title: String
-        company: String
-        companyWebsite: String
-        location: String
-        jobTitle: String
-        description: String
-        startDate: String
-        endDate: String
-      }
+    ${portfolioTypes}
 
     type Query {
         jyoti:String
-        portfolio(id: ID): Porfolio
-        portfolios:[Porfolio]
+        portfolio(id: ID): Portfolio
+        portfolios:[Portfolio]
       }
+
+      type Mutation {
+        createPortfolio(input: PortfolioInput): Portfolio
+      }
+
     `);
 
     //   The root provides a resolver for API endpoint
 
     const root = {
-        jyoti: () => {
-            return 'Hello jyoti'
-        },
-        portfolio: ({ id }) => {
-            const portfolio = data.portfolios.find(p => p._id === id)
-            return portfolio
-        },
-        portfolios: () => {
-            return data.portfolios
-        }
+        ...portfolioResolvers
     }
 
     server.use('/graphql', graphqlHTTP({
